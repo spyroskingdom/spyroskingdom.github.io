@@ -3,20 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Spyro's Kingdom</title>
+  <title>Spyro's Kingdom History Museum</title>
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Spyro's Kingdom">
-  <meta property="og:title" content="Spyro's Kingdom">
-  <meta property="og:description" content="Explore Spyro's Kingdom">
+  <meta property="og:title" content="Spyro's Kingdom History Museum">
+  <meta property="og:description" content="Explore the history of Spyro's Kingdom">
   <meta property="og:url" content="https://spyroskingdom.com/">
   <meta property="og:image" content="https://spyroskingdom.com/embed-image.png">
-  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="400">
   <meta property="og:image:height" content="400">
   <meta name="twitter:card" content="summary_large_image">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+      color: #fff;
+      font-family: system-ui, sans-serif;
+      background: url("assets/web-bg.png") repeat-x;
+      background-size: auto 100%;
+      animation: scroll 90s linear infinite;
+    }
+    @keyframes scroll {
+      to { background-position-x: -250vh; }
+    }
+    img {
+      width: min(320px, 70vw);
+      margin-top: 24px;
+      transition: transform 0.25s;
+    }
+    img:hover {
+      transform: scale(1.15);
+    }
+  </style>
 </head>
 <body>
-  <h1>Spyro's Kingdom</h1>
+  <img src="assets/sk-logo.png" alt="Spyro's Kingdom">
 </body>
 </html>
