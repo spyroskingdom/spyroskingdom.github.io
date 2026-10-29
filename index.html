@@ -21,6 +21,19 @@
       src: url('assets/markinlt.ttf') format('truetype');
       font-display: swap;
     }
+    @font-face {
+      font-family: 'Proxima';
+      src: url('assets/ProximaNova.otf') format('opentype');
+      font-display: swap;
+    }
+      @font-face {
+      font-family: 'Gotham';
+      src: url('assets/Gotham.otf') format('opentype');
+      font-display: swap;
+    }
+
+
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -28,12 +41,12 @@
       text-align: center;
       color: #fff;
       font-family: system-ui, sans-serif;
-      background: url("assets/web-bg.png") repeat-x fixed;
-      background-size: auto 100vh;
-      animation: scroll 60s linear infinite;
+      background: url("assets/SpyrosKingdomWebBG.png") no-repeat center center fixed;
+      background-size: cover;
+
     }
     @keyframes scroll {
-      to { background-position-x: -250vh; }
+      to { background-position-x: 0vh; }
     }
 
     img {
@@ -43,121 +56,97 @@
       -webkit-touch-callout: none;
     }
 
+    .masthead {
+      position: relative;
+      width: 100%;
+      margin: 0;
+    }
+    .nav-bar {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .masthead { container-type: inline-size; }
+    .nav-links {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .nav-group {
+      position: absolute;
+      top: 57%;
+      transform: translateY(-50%);
+      width: 20%;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+    .nav-group.left  { left: 11.5%; }
+    .nav-group.right { right: 11.8%; }
+    .nav-links a {
+      pointer-events: auto;
+      font-family: 'Proxima', system-ui, sans-serif;
+      font-size: max(6px, 1.1cqw);
+      line-height: 1;
+      color: #fff;
+      text-decoration: none;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+      padding: 0.1em 0.1em;
+      white-space: nowrap;
+      transition: color 0.15s, transform 0.15s;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus-visible,
+    .nav-links a:active {
+      color: #ffd93b;
+      transform: scale(1.08);
+      outline: none;
+    }
     .logo {
-      width: 30vw;
-      max-width: 100%;
-      margin-top: 4vh;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 30%;
+      height: auto;
+      margin: 0;
       transition: transform 0.25s;
     }
     .logo:hover {
-      transform: scale(1.05);
+      transform: translate(-50%, -50%) scale(1.05);
     }
 
     .contribute {
       margin: 3vh auto 0;
       padding: 0 16px;
-      font-family: 'Markin', system-ui, sans-serif;
-      font-size: clamp(1rem, 2vw, 1.6rem);
+      font-family: 'Gotham', system-ui, sans-serif;
+      font-size: clamp(1rem, 3vw, 2.5rem);
       text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
     }
 
-    .gallery {
-      columns: 220px;
-      column-gap: 12px;
-      max-width: 1400px;
-      margin: 3vh auto 6vh;
-      padding: 0 16px;
-    }
-    .gallery img {
-      display: block;
-      width: 100%;
-      height: auto;
-      margin: 0 0 12px;
-      border-radius: 8px;
-      break-inside: avoid;
-      background: rgba(0, 0, 0, 0.25);
-      cursor: zoom-in;
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-    .gallery img:hover {
-      transform: scale(1.03);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.85);
-      cursor: zoom-out;
-      z-index: 10;
-    }
-    .lightbox.open { display: flex; }
-    .lightbox img {
-      max-width: 94vw;
-      max-height: 94vh;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-    }
+ 
   </style>
 </head>
 <body>
-  <img class="logo" src="assets/sk-logo.png" alt="Spyro's Kingdom">
+  <header class="masthead">
+    <img class="nav-bar" src="assets/sk-nav.png" alt="">
+    <nav class="nav-links">
+      <div class="nav-group left">
+        <a href="https://spyroskingdom.com/gallery">GALLERY</a>
+        <a href="#">ABOUT</a>
+      </div>
+      <div class="nav-group right">
+        <a href="#contribute">CONTRIBUTE</a>
+        <a href="https://discord.com/invite/AqPhVkYyYz">DISCORD</a>
+      </div>
+    </nav>
+    <a href="https://spyroskingdom.com"><img class="logo" src="assets/sk-logo.png" alt="Spyro's Kingdom" ></a>
+  </header>
 
-  <p class="contribute">Have images to contribute? Add @shojiki.64 or @gutterbeasts on discord!</p>
+  <p class="contribute" id="contribute">WELCOME TO THE SPYRO'S KINGDOM WEBSITE! NOT MUCH IS HERE YET, SO GO TO GALLERY TO SEE SOME AWESOME IMAGES
+  </p>
 
-  <main class="gallery" id="gallery"></main>
-  <div class="lightbox" id="lightbox"><img alt=""></div>
-
-  <script>
-    const DIR = 'assets/gallery/';
-    const IMG_RE = /\.(png|jpe?g|gif|webp|avif|svg)$/i;
-
-    async function getFileList() {
-      try {
-        const res = await fetch(DIR + 'gallery.json');
-        if (res.ok) return (await res.json()).filter(f => IMG_RE.test(f));
-      } catch {}
-
-      try {
-        const res = await fetch(DIR);
-        if (res.ok) {
-          const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
-          return [...doc.querySelectorAll('a')]
-            .map(a => decodeURIComponent(a.getAttribute('href') || '').split('/').pop())
-            .filter(f => IMG_RE.test(f));
-        }
-      } catch {}
-
-      return [];
-    }
-
-    (async () => {
-      const gallery = document.getElementById('gallery');
-      const files = await getFileList();
-
-      files.forEach(file => {
-        const img = document.createElement('img');
-        img.src = DIR + encodeURIComponent(file);
-        img.alt = file.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ');
-        img.loading = 'lazy';
-        gallery.appendChild(img);
-      });
-    })();
-
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = lightbox.querySelector('img');
-    document.getElementById('gallery').addEventListener('click', e => {
-      if (e.target.tagName !== 'IMG') return;
-      lightboxImg.src = e.target.src;
-      lightboxImg.alt = e.target.alt;
-      lightbox.classList.add('open');
-    });
-    lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
-    addEventListener('keydown', e => e.key === 'Escape' && lightbox.classList.remove('open'));
+ 
   </script>
 </body>
 </html>
