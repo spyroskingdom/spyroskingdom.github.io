@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Spyro's Kingdom</title>
+  <link rel="icon" type="image/png" sizes="16x16" href="https://spyroskingdom.com/assets/favicon.png>
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Spyro's Kingdom">
@@ -115,12 +116,39 @@
     .logo:hover {
       transform: translate(-50%, -50%) scale(1.05);
     }
+    .Spyro {
+      position: static;
+      left: 50%;
+      top: 50%;
+      transform: translate(10%, -5%);
+      width: 30%;
+      height: auto;
+      scale: 100%;
+    }
+    .CyclopsSnail {
+      position: static;
+      left: 50%;
+      top: 50%;
+      transform: translate(-10%, 0%);
+      width: 30%;
+      height: auto;
+      scale: 100%;
+    }
 
     .contribute {
       margin: 3vh auto 0;
       padding: 0 16px;
       font-family: 'Gotham', system-ui, sans-serif;
       font-size: clamp(1rem, 3vw, 2.5rem);
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+    }
+    .legal{
+      position: static;
+      transform: translate(0%,95%);
+      margin: 3vh auto 0;
+      padding: 0 16px;
+      font-family: 'markin', system-ui, sans-serif;
+      font-size: clamp(1rem, 3vw, 1rem);
       text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
     }
 
@@ -145,5 +173,11 @@
 
   <p class="contribute" id="contribute">WELCOME TO THE SPYRO'S KINGDOM WEBSITE! NOT MUCH IS HERE YET, SO GO TO GALLERY TO SEE SOME AWESOME IMAGES
   </p>
+  <img class="CyclopsSnail" src="assets/CyclopsSnail2027.png" alt="SpyroJR">
+  <img class="Spyro" src="assets/RedDragon2027.png" alt="Tarclops">
 </body>
+<footer>
+    <p class="legal" id="legal">This website is not owned or associated with Activision Publishing. Spyro's Kingdom and Skylanders Spyro's Adventure are not our own.
+    </p>
+  <footer>
 </html>
